@@ -22,7 +22,6 @@ Route::get('/news', function () {
     return view('news');
 });
 
-
 Route::get('/about', function () {
     return view('about');
 });
