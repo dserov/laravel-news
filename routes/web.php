@@ -51,7 +51,7 @@ Route::get('/news/{id}', [NewsController::class, 'show'])
 Route::get('/auth', [AuthController::class, 'index'])->name('auth::login');
 
 // f. Страницу добавления новости.
-Route::get('/news/add', [NewsController::class, 'add_news'])->name('news::add_new');
+Route::get('/news/add', [NewsController::class, 'addNews'])->name('news::add_new');
 
 // Отображение списка новостей
 Route::get('/news', [NewsController::class, 'index'])

@@ -34,7 +34,7 @@ class NewsController extends Controller
         ]);
     }
 
-    public function add_news()
+    public function addNews()
     {
         $categoryController = new CategoryController();
         return view('add_news', [
