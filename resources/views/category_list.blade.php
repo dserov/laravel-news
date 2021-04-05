@@ -21,23 +21,11 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                <a href="{{ url('/news') }}" class="text-sm text-gray-700 underline">News</a>
-                <a href="{{ url('/about') }}" class="text-sm text-gray-700 underline">About</a>
-            </div>
-            <h1>Hello World!!!!</h1>
-
-            Доступные ссылки:
-
-            <div><a href="{{ route('hello::page') }}">a. Страницу приветствия.</a></div>
-            <div><a href="{{ route('category::list') }}">b. Страницу категорий новостей.</a></div>
-            <div><a href="{{ route('news::bycategory', ['category' => 1]) }}">c. Страницу вывода новостей по конкретной
-                категории.</a></div>
-            <div><a href="{{ route('news::show', ['id' => 1]) }}">d. Страницу вывода конкретной новости.</a></div>
-            <div><a href="{{ route('auth::login') }}">e. Страницу авторизации.</a></div>
-            <div><a href="{{ route('news::add_new') }}">f. Страницу добавления новости.</a></div>
-            <div><a href="{{ route('news::list') }}">Отображение списка новостей</a></div>
+    <h1>Categoryes</h1>
+    @foreach($categoryes as $category)
+        <div>
+            <a href="{{ route("news::bycategory", ['category' => $category['id']]) }}">Отобразить все новости категории - {{ $category['name'] }}</a>
         </div>
+    @endforeach
     </body>
 </html>

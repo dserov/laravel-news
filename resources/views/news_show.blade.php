@@ -21,6 +21,9 @@
         </style>
     </head>
     <body class="antialiased">
-    <h1>News page</h1>
+    <h1>One News Page</h1>
+
+    <h2>{{ $news['title'] }}</h2>
+    <p>Категория: <a href="{{ route("news::bycategory", ['category' => $news['category_id']]) }}">Перейти в категорию {{ $news['category_id'] }}</a></p>
     </body>
 </html>
