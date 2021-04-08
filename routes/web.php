@@ -17,14 +17,7 @@ use \App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-
-Route::get('/news', function () {
-    return view('news');
-});
+Route::redirect('/', '/news');
 
 Route::get('/about', function () {
     return view('about');
@@ -37,24 +30,30 @@ Route::get('/hello', [HelloController::class, 'index'])->name('hello::page');
 Route::get('/category', [CategoryController::class, 'index'])
     ->name('category::list');
 
-// c. Страницу вывода новостей по конкретной категории.
-Route::get('/news/category/{category}', [NewsController::class, 'listByCategory'])
-    ->name('news::bycategory')
-    ->where(['category' => '\d+']);
+Route::group([
+    'prefix' => 'news',
+    'as' => 'news::'
+], function () {
+    // c. Страницу вывода новостей по конкретной категории.
+    Route::get('/category/{category}', [NewsController::class, 'listByCategory'])
+        ->name('bycategory')
+        ->where(['category' => '\d+']);
 
-// d. Страницу вывода конкретной новости.
-Route::get('/news/{id}', [NewsController::class, 'show'])
-    ->name('news::show')
-    ->where(['id' => '\d+']);
+    // d. Страницу вывода конкретной новости.
+    Route::get('/{id}', [NewsController::class, 'show'])
+        ->name('show')
+        ->where(['id' => '\d+']);
+
+    // Отображение списка новостей
+    Route::get('/', [NewsController::class, 'index'])
+        ->name('list');
+
+    // f. Страницу добавления новости.
+    Route::get('/add', [NewsController::class, 'addNews'])
+        ->name('add_new');
+});
 
 // e. Страницу авторизации.
-Route::get('/auth', [AuthController::class, 'index'])->name('auth::login');
-
-// f. Страницу добавления новости.
-Route::get('/news/add', [NewsController::class, 'addNews'])->name('news::add_new');
-
-// Отображение списка новостей
-Route::get('/news', [NewsController::class, 'index'])
-    ->name('news::list');
+Route::get('/auth/login', [AuthController::class, 'login'])->name('auth::login');
 
 
