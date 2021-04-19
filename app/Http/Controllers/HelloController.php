@@ -8,6 +8,6 @@ class HelloController extends Controller
 {
     //
     public function index() {
-        return '<H1>Страница приветствия!</H1>';
+        return view('hello.index');
     }
 }

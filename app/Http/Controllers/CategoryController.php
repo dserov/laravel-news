@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class CategoryController extends Controller
 {
-    private $categoryes = [
+    private $categories = [
         ['id' => 1, 'name' => 'category1'],
         ['id' => 2, 'name' => 'category2'],
         ['id' => 3, 'name' => 'category3'],
@@ -13,14 +13,14 @@ class CategoryController extends Controller
     //
     public function index()
     {
-        return view('category_list', ['categoryes' => $this->categoryes]);
+        return view('category.list', ['categories' => $this->categories]);
     }
 
     /**
      * @return array
      */
-    public function getCategoryes()
+    public function getCategories()
     {
-        return $this->categoryes;
+        return $this->categories;
     }
 }
