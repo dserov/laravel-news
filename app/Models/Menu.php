@@ -27,6 +27,10 @@ class Menu extends Model
             'alias' => 'feedback::index',
         ],
         [
+            'title' => 'Выгрузка',
+            'alias' => 'uploadRequest::index',
+        ],
+        [
             'title' => 'Admin',
             'alias' => 'admin::news::index',
         ],

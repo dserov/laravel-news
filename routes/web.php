@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\UploadRequestController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HelloController;
 use \App\Http\Controllers\CategoryController;
@@ -76,5 +77,15 @@ Route::group([
     Route::get('/', [FeedbackController::class, 'index'])
         ->name('index');
     Route::post('/save', [FeedbackController::class, 'save'])
+        ->name('save');
+});
+
+Route::group([
+    'prefix' => '/uploadRequest',
+    'as' => 'uploadRequest::'
+], function (){
+    Route::get('/', [UploadRequestController::class, 'index'])
+        ->name('index');
+    Route::post('/save', [UploadRequestController::class, 'save'])
         ->name('save');
 });
