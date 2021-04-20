@@ -26,12 +26,4 @@ class NewsController extends Controller
             'news' => $newsModel->getById($id)
         ]);
     }
-
-    public function addNews()
-    {
-        $categoryController = new CategoryController();
-        return view('news.add_news', [
-            'categories' => $categoryController->getCategories()
-        ]);
-    }
 }

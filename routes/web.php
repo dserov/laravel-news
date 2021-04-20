@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HelloController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\AuthController;
-
+use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,13 +48,33 @@ Route::group([
     // Отображение списка новостей
     Route::get('/', [NewsController::class, 'index'])
         ->name('list');
-
-    // f. Страницу добавления новости.
-    Route::get('/add', [NewsController::class, 'addNews'])
-        ->name('add_new');
 });
 
 // e. Страницу авторизации.
 Route::get('/auth/login', [AuthController::class, 'login'])->name('auth::login');
 
+Route::group([
+    'prefix' => '/admin/news',
+    'as' => 'admin::news::'
+], function () {
+    Route::get('/', [AdminNewsController::class, 'index'])
+        ->name('index');
+    Route::get('/create', [AdminNewsController::class, 'create'])
+        ->name('create');
+    Route::post('/save', [AdminNewsController::class, 'save'])
+        ->name('save');
+    Route::get('/update', [AdminNewsController::class, 'update'])
+        ->name('update');
+    Route::get('/delete', [AdminNewsController::class, 'delete'])
+        ->name('delete');
+});
 
+Route::group([
+    'prefix' => '/feedback',
+    'as' => 'feedback::'
+], function (){
+    Route::get('/', [FeedbackController::class, 'index'])
+        ->name('index');
+    Route::post('/save', [FeedbackController::class, 'save'])
+        ->name('save');
+});
