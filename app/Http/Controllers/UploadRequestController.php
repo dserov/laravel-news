@@ -16,7 +16,7 @@ class UploadRequestController extends Controller
 
         $upload = $request->input('upload');
 
-        (new UploadRequest())->save($upload);
+        (new UploadRequest())->add($upload);
 
         return redirect()->route('uploadRequest::index')->with('success', 'Запрос принят!');
     }

@@ -3,7 +3,7 @@
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UploadRequestController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\HelloController;
+use \App\Http\Controllers\DbController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\AuthController;
@@ -25,8 +25,8 @@ Route::get('/about', function () {
     return view('about');
 });
 
-// a. Страницу приветствия.
-Route::get('/hello', [HelloController::class, 'index'])->name('hello::page');
+// a. Страницу инфо про БД.
+Route::get('/db', [DbController::class, 'index'])->name('db::index');
 
 // b. Страницу категорий новостей.
 Route::get('/category', [CategoryController::class, 'index'])

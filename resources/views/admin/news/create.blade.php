@@ -7,14 +7,23 @@
     @endif
     {!! Form::open(['route' => 'admin::news::save']) !!}
     {{--<form action="{{route('admin::news::create')}}" method="post">--}}
-        <div class="col-span-6">
+        <div class="col-span-6 mb-8">
             <label for="title" class="block text-sm font-medium text-gray-700">Заголовок</label>
             <input type="text" name="news[title]" id="title" autocomplete="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
 
-        <div class="col-span-6">
+        <div class="col-span-6 mb-8">
+            <label for="title" class="block text-sm font-medium text-gray-700">Категория</label>
+            <select type="text" name="news[category_id]" id="category_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="col-span-6 mb-8">
             <label for="content" class="block text-sm font-medium text-gray-700">Содержание</label>
-            <input type="text" name="news[content]" id="content" autocomplete="content" cols="50" rows="5" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <textarea name="news[content]" id="content" cols="50" rows="5" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
         </div>
 
         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">

@@ -11,8 +11,8 @@ class Menu extends Model
 
     private $menu = [
         [
-            'title' => 'Hello',
-            'alias' => 'hello::page',
+            'title' => 'DB Info',
+            'alias' => 'db::index',
         ],
         [
             'title' => 'Новости',
