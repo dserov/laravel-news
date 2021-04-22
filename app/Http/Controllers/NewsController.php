@@ -8,22 +8,23 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $newsModel = new News();
-        return view('news.index', ['news' => $newsModel->getAll()]);
+        return view('news.index', ['news' => (new News())->getAll()]);
     }
 
     public function listByCategory($category)
     {
-        $newsModel = new News();
+        $news = News::query()->where('category_id', '=', $category)->get()->toArray();
         return view('news.list_by_category', [
-            'news' => $newsModel->getByCategoryId($category)]);
+            'news' => $news
+        ]);
     }
 
     public function show($id)
     {
-        $newsModel = new News();
+        $news = News::query()->where('id', '=', $id)->get()->toArray();
+        $item = current($news);
         return view('news.show', [
-            'news' => $newsModel->getById($id)
+            'news' => $item
         ]);
     }
 }
