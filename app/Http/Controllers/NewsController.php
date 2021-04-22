@@ -21,10 +21,9 @@ class NewsController extends Controller
 
     public function show($id)
     {
-        $news = News::query()->where('id', '=', $id)->get()->toArray();
-        $item = current($news);
+        $news = News::query()->find($id)->toArray();
         return view('news.show', [
-            'news' => $item
+            'news' => $news
         ]);
     }
 }
