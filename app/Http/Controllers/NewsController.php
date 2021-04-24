@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\News;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        return view('news.index', ['news' => (new News())->getAll()]);
+        return view('news.index', ['news' => News::query()->with(['category'])->get()]);
     }
 
-    public function listByCategory($category)
+    public function listByCategory(Category $category)
     {
-        $news = News::query()->where('category_id', '=', $category)->get()->toArray();
+        $news = $category->news;
         return view('news.list_by_category', [
+            'category' => $category,
             'news' => $news
         ]);
     }
 
-    public function show($id)
+    public function show(News $news)
     {
-        $news = News::query()->find($id)->toArray();
         return view('news.show', [
             'news' => $news
         ]);

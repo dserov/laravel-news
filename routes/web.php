@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\UploadRequestController;
+use App\Http\Controllers\ExportRequestController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DbController;
 use \App\Http\Controllers\CategoryController;
@@ -42,13 +42,12 @@ Route::group([
         ->where(['category' => '\d+']);
 
     // d. Страницу вывода конкретной новости.
-    Route::get('/{id}', [NewsController::class, 'show'])
-        ->name('show')
-        ->where(['id' => '\d+']);
+    Route::get('/{news}', [NewsController::class, 'show'])
+        ->name('show');
 
     // Отображение списка новостей
     Route::get('/', [NewsController::class, 'index'])
-        ->name('list');
+        ->name('index');
 });
 
 // e. Страницу авторизации.
@@ -64,9 +63,9 @@ Route::group([
         ->name('create');
     Route::post('/save', [AdminNewsController::class, 'save'])
         ->name('save');
-    Route::get('/update', [AdminNewsController::class, 'update'])
+    Route::get('/update/{news}', [AdminNewsController::class, 'update'])
         ->name('update');
-    Route::get('/delete', [AdminNewsController::class, 'delete'])
+    Route::get('/delete/{news}', [AdminNewsController::class, 'delete'])
         ->name('delete');
 });
 
@@ -80,12 +79,15 @@ Route::group([
         ->name('save');
 });
 
+Route::get('/admin/exportRequest', [ExportRequestController::class, 'index'])
+    ->name('admin::exportRequest::index');
+
 Route::group([
-    'prefix' => '/uploadRequest',
-    'as' => 'uploadRequest::'
+    'prefix' => '/exportRequest',
+    'as' => 'exportRequest::'
 ], function (){
-    Route::get('/', [UploadRequestController::class, 'index'])
-        ->name('index');
-    Route::post('/save', [UploadRequestController::class, 'save'])
+    Route::get('/create', [ExportRequestController::class, 'create'])
+        ->name('create');
+    Route::post('/save', [ExportRequestController::class, 'save'])
         ->name('save');
 });

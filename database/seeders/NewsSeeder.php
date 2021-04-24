@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\News;
 use Illuminate\Database\Seeder;
 use Faker\Generator;
 
@@ -21,10 +22,8 @@ class NewsSeeder extends Seeder
     public function run(Generator $faker)
     {
         $this->faker = $faker;
-        //
 
-        \DB::table('news')
-            ->insert($this->generateData());
+        News::query()->insert($this->generateData());
     }
 
     /**

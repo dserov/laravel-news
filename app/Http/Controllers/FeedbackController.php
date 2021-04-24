@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveFeedbackRequest;
 use App\Models\Feedback;
-use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
     public function index()
     {
-        $feedbacks = (new Feedback())->getAll();
-        return view('feedback.index', ['feedbacks' => $feedbacks]);
+        return view('feedback.index', ['feedbacks' => Feedback::all()]);
     }
 
-    public function save(Request $request)
+    public function save(SaveFeedbackRequest $request)
     {
-        $feedback = $request->input('feedback');
-
         // save feedback
-        $errors = (new Feedback())->add($feedback);
+        $feedbackModel = new Feedback();
+        $feedbackModel->fill($request->input('feedback'));
 
-        if ($errors) {
-            return redirect()->route('feedback::index')->with('errors', $errors);
+        if (!$feedbackModel->save()) {
+            return redirect()->route('feedback::index')->withErrors(['Не удалось сохранить!'])->withInput();
         }
 
         return redirect()->route('feedback::index')->with('success', 'Отзыв добавлен успешно!');

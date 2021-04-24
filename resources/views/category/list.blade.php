@@ -11,7 +11,7 @@
     </div>
     @forelse($categories as $category)
         <div>
-            <a href="{{ route("news::bycategory", ['category' => $category['id']]) }}">Отобразить все новости категории - {{ $category['name'] }}</a>
+            <a href="{{ route("news::bycategory", ['category' => $category]) }}">{{ $category->name }}</a>
         </div>
     @empty
         Категорий нет
