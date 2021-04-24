@@ -23,8 +23,16 @@ class Menu extends Model
             'alias' => 'category::list',
         ],
         [
-            'title' => 'Новая новость',
-            'alias' => 'news::add_new',
+            'title' => 'Обратная связь',
+            'alias' => 'feedback::index',
+        ],
+        [
+            'title' => 'Выгрузка',
+            'alias' => 'uploadRequest::index',
+        ],
+        [
+            'title' => 'Admin',
+            'alias' => 'admin::news::index',
         ],
     ];
 
