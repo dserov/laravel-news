@@ -12,29 +12,33 @@
             <th class="mr-3 border-black border">Имя</th>
             <th class="mr-3 border-black border">Отзыв</th>
         </tr>
-    @forelse($feedbacks as $feedback)
-        <tr>
-            <td class="mr-3 border-black border">{{$feedback['name']}}</td>
-            <td class="border-black border">{{$feedback['content']}}</td>
-        </tr>
+        @forelse($feedbacks as $feedback)
+            <tr>
+                <td class="mr-3 border-black border">{{$feedback['name']}}</td>
+                <td class="border-black border">{{$feedback['content']}}</td>
+            </tr>
         @empty
-        <tr>
-            <td colspan="2">Отзывов пока нет</td>
-        </tr>
-    @endforelse
-        </table>
+            <tr>
+                <td colspan="2">Отзывов пока нет</td>
+            </tr>
+        @endforelse
+    </table>
 
     <hr class="my-4">
     <h2 class="text-2xl text-center my-3 font-bold">Новый отзыв</h2>
     @if(Session::has('success'))
         <div class="p-4 border-2 text-indigo-500 text-center">
-            {!! Session::get('success') !!}}
+            {!! Session::get('success') !!}
         </div>
     @endif
-    @if(Session::has('errors'))
+    @if ($errors->any())
         <div class="p-4 border-2 text-indigo-500 text-center">
             <h2 class="font-bold text-xl">Отзыв не добавлен</h2>
-            {!! implode(', ', Session::get('errors')) !!}
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
     {!! Form::open(['route' => 'feedback::save']) !!}
