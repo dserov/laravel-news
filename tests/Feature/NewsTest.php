@@ -19,7 +19,7 @@ class NewsTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSeeText('Список новостей');
-        $response->assertSeeText('news 4');
+        $response->assertSeeText('Consequatur');
     }
 
     /**
@@ -29,10 +29,10 @@ class NewsTest extends TestCase
      */
     public function testNewsCard()
     {
-        $response = $this->get('/news/1');
+        $response = $this->get('/news/7');
 
         $response->assertStatus(200);
-        $response->assertSeeText('news 1');
-        $response->assertSeeText('News content');
+        $response->assertSeeText('Illum beatae');
+        $response->assertSeeText('Rerum');
     }
 }

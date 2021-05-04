@@ -17,47 +17,56 @@ class Menu extends Model
 {
     use HasFactory;
 
-    private $menu = [
-        [
-            'title' => 'Новости',
-            'alias' => 'news::index',
-        ],
-        [
-            'title' => 'Категории',
-            'alias' => 'category::list',
-        ],
-        [
-            'title' => 'Обратная связь',
-            'alias' => 'feedback::index',
-        ],
-        [
-            'title' => 'Запрос выгрузки',
-            'alias' => 'exportRequest::create',
-        ],
-        [
-            'title' => 'Adminka',
-            'alias' => 'admin::news::index',
-        ],
-    ];
+    private $menu = [];
 
-    private $adminMenu = [
-        [
-            'title' => 'DB Info',
-            'alias' => 'db::index',
-        ],
-        [
-            'title' => 'Новости',
-            'alias' => 'admin::news::index',
-        ],
-        [
-            'title' => 'Запросы на выгрузку',
-            'alias' => 'admin::exportRequest::index',
-        ],
-        [
-            'title' => 'На сайт',
-            'alias' => 'news::index',
-        ],
-    ];
+    private $adminMenu = [];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->menu = [
+            [
+                'title' => __('labels.news_as_many'),
+                'alias' => 'news::index',
+            ],
+            [
+                'title' => __('labels.categories'),
+                'alias' => 'category::list',
+            ],
+            [
+                'title' => __('labels.feedback'),
+                'alias' => 'feedback::index',
+            ],
+            [
+                'title' => __('labels.export_request'),
+                'alias' => 'exportRequest::create',
+            ],
+            [
+                'title' => __('labels.go_admin_panel'),
+                'alias' => 'admin::news::index',
+            ],
+        ];
+
+        $this->adminMenu = [
+            [
+                'title' => __('labels.news_as_many'),
+                'alias' => 'admin::news::index',
+            ],
+            [
+                'title' => __('labels.categories'),
+                'alias' => 'admin::category::index',
+            ],
+            [
+                'title' => __('labels.export_requests'),
+                'alias' => 'admin::exportRequest::index',
+            ],
+            [
+                'title' => __('labels.go_site'),
+                'alias' => 'news::index',
+            ],
+        ];
+    }
+
 
     /**
      * @return array

@@ -3,11 +3,11 @@
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ExportRequestController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\DbController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +24,6 @@ Route::redirect('/', '/news');
 Route::get('/about', function () {
     return view('about');
 });
-
-// a. Страницу инфо про БД.
-Route::get('/db', [DbController::class, 'index'])->name('db::index');
 
 // b. Страницу категорий новостей.
 Route::get('/category', [CategoryController::class, 'index'])
@@ -70,6 +67,22 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => '/admin/categories',
+    'as' => 'admin::category::'
+], function () {
+    Route::get('/', [AdminCategoryController::class, 'index'])
+        ->name('index');
+    Route::get('/create', [AdminCategoryController::class, 'create'])
+        ->name('create');
+    Route::post('/save', [AdminCategoryController::class, 'save'])
+        ->name('save');
+    Route::get('/update/{category}', [AdminCategoryController::class, 'update'])
+        ->name('update');
+    Route::get('/delete/{category}', [AdminCategoryController::class, 'delete'])
+        ->name('delete');
+});
+
+Route::group([
     'prefix' => '/feedback',
     'as' => 'feedback::'
 ], function (){
@@ -90,4 +103,12 @@ Route::group([
         ->name('create');
     Route::post('/save', [ExportRequestController::class, 'save'])
         ->name('save');
+});
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, \Config::get('app.locales'))) {
+        request()->session()->put('locale', $locale);
+    }
+
+    return redirect()->back();
 });

@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'news_as_many' => 'Новости',
+    'news_title' => 'Заголовок',
+    'news_source' => 'Источник',
+    'news_category_name' => 'Категория',
+    'news_spoiler' => 'Спойлер',
+    'news_content' => 'Содержание',
+    'news_is_private_title' => 'Приватная',
+    'news_not_found' => 'Новостей пока нет!',
+    'news_list' => 'Список новостей',
+    'news_add_new' => 'Добавить новость',
+    'yes' => 'Да',
+    'no' => 'Нет',
+    'save_btn_title' => 'Сохранить',
+    'edit_btn_title' => 'Изменить',
+    'delete_btn_title' => 'Удалить',
+    'edit_news_title' => 'Редактировать новость',
+    'add_news_title' => 'Добавить новость',
+    'export_requests' => 'Запросы на выгрузку',
+    'export_request' => 'Запрос на выгрузку',
+    'go_site' => 'На сайт',
+    'go_admin_panel' => 'Админ-панель',
+    'categories' => 'Категории',
+    'category' => 'Категория',
+    'feedback' => 'Обратная связь',
+    'category_name' => 'Имя категории',
+    'add_category_title' => 'Добавить категорию',
+    'edit_category_title' => 'Изменить категорию',
+    'news_in_category' => 'Новостей в категории',
+
+];

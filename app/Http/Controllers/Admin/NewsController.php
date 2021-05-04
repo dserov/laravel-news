@@ -19,12 +19,12 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return view('admin.news.index', ['news' => News::query()->with(['category'])->get()]);
+        return view('admin.news.index', ['news' => News::query()->with(['category'])->paginate(10)]);
     }
 
     public function create()
     {
-        return view('admin.news.create', ['categories' => Category::all()]);
+        return view('admin.news.create', ['categories' => Category::getList()]);
     }
 
     public function save(SaveNewsRequest $request)
@@ -55,7 +55,7 @@ class NewsController extends Controller
             throw new \Exception('Не удалось удалить новость!');
         } catch (\Exception $exception) {
             return redirect()->route('admin::news::index')
-                ->withErrors([ $exception->getMessage() ])
+                ->withErrors([$exception->getMessage()])
                 ->withInput();
         }
     }
@@ -66,6 +66,6 @@ class NewsController extends Controller
             'news' => $news->toArray()
         ]);
         $request->flash();
-        return view('admin.news.create', ['categories' => Category::all()]);
+        return view('admin.news.create', ['categories' => Category::getList()]);
     }
 }

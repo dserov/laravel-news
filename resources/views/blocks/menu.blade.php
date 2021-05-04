@@ -17,4 +17,7 @@
             @endauth
         </div>
     @endif
+    @foreach( \Config::get('app.locales') as $locale)
+        <a href="/lang/{{ $locale }}" class="px-2 py-2 m-1">{{ ucfirst($locale) }}</a>
+    @endforeach
 </div>
