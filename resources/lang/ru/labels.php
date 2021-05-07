@@ -30,4 +30,17 @@ return [
     'edit_category_title' => 'Изменить категорию',
     'news_in_category' => 'Новостей в категории',
 
+    'users' => 'Пользователи',
+    'add_user_title' => 'Добавить пользователя',
+    'edit_user_title' => 'Редактирование профиля',
+    'user_name' => 'Имя',
+    'user_email' => 'Email',
+    'user_password' => 'Пароль',
+    'user_password_confirmation' => 'Подтверждение пароля',
+    'user_current_password' => 'Текущий пароль',
+    'user_is_admin_title' => 'Администратор',
+    'current_password_is_invalid' => 'Введенный пароль не совпадает с текущим',
+    'user_id_empty' => 'Новый пользователь',
+    'login' => 'Вход',
+    'register' => 'Регистрация',
 ];

@@ -33,6 +33,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $is_admin
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsAdmin($value)
  */
 class User extends Authenticatable
 {
@@ -47,6 +49,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**

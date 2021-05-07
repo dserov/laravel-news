@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.35.1.
+ * Generated for Laravel 8.40.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1864,6 +1864,20 @@
                         return $instance->attempt($credentials, $remember);
         }
                     /**
+         * Attempt to authenticate a user with credentials and additional callbacks.
+         *
+         * @param array $credentials
+         * @param array|callable $callbacks
+         * @param false $remember
+         * @return bool 
+         * @static 
+         */ 
+        public static function attemptWhen($credentials = [], $callbacks = null, $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->attemptWhen($credentials, $callbacks, $remember);
+        }
+                    /**
          * Log the given user ID into the application.
          *
          * @param mixed $id
@@ -2773,7 +2787,7 @@
                     /**
          * Dispatch a command to its appropriate handler in the current process.
          * 
-         * Queuable jobs will be dispatched to the "sync" queue.
+         * Queueable jobs will be dispatched to the "sync" queue.
          *
          * @param mixed $command
          * @param mixed $handler
@@ -3996,6 +4010,20 @@
                         $instance->queue(...$parameters);
         }
                     /**
+         * Queue a cookie to expire with the next response.
+         *
+         * @param string $name
+         * @param string|null $path
+         * @param string|null $domain
+         * @return void 
+         * @static 
+         */ 
+        public static function expire($name, $path = null, $domain = null)
+        {
+                        /** @var \Illuminate\Cookie\CookieJar $instance */
+                        $instance->expire($name, $path, $domain);
+        }
+                    /**
          * Remove a cookie from the queue.
          *
          * @param string $name
@@ -4462,6 +4490,18 @@
         {
                         /** @var \Illuminate\Database\DatabaseManager $instance */
                         $instance->setReconnector($reconnector);
+        }
+                    /**
+         * Set the application instance used by the manager.
+         *
+         * @param \Illuminate\Contracts\Foundation\Application $app
+         * @return \Illuminate\Database\DatabaseManager 
+         * @static 
+         */ 
+        public static function setApplication($app)
+        {
+                        /** @var \Illuminate\Database\DatabaseManager $instance */
+                        return $instance->setApplication($app);
         }
                     /**
          * Determine if the connected database is a MariaDB database.
@@ -6644,6 +6684,8 @@
      * @method static \Illuminate\Http\Client\PendingRequest withoutVerifying()
      * @method static \Illuminate\Http\Client\PendingRequest dump()
      * @method static \Illuminate\Http\Client\PendingRequest dd()
+     * @method static \Illuminate\Http\Client\PendingRequest async()
+     * @method static array pool(callable $callback)
      * @method static \Illuminate\Http\Client\Response delete(string $url, array $data = [])
      * @method static \Illuminate\Http\Client\Response get(string $url, array $query = [])
      * @method static \Illuminate\Http\Client\Response head(string $url, array $query = [])
@@ -10352,7 +10394,7 @@
          *
          * @param string|null $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function old($key = null, $default = null)
@@ -11092,8 +11134,8 @@
      * @method static \Illuminate\Routing\RouteRegistrar middleware(array|string|null $middleware)
      * @method static \Illuminate\Routing\RouteRegistrar name(string $value)
      * @method static \Illuminate\Routing\RouteRegistrar namespace(string|null $value)
-     * @method static \Illuminate\Routing\RouteRegistrar prefix(string  $prefix)
-     * @method static \Illuminate\Routing\RouteRegistrar where(array  $where)
+     * @method static \Illuminate\Routing\RouteRegistrar prefix(string $prefix)
+     * @method static \Illuminate\Routing\RouteRegistrar where(array $where)
      * @see \Illuminate\Routing\Router
      */ 
         class Route {
@@ -11957,6 +11999,47 @@
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
         }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::auth()
+         * @param mixed $options
+         * @static 
+         */ 
+        public static function auth($options = [])
+        {
+                        return \Illuminate\Routing\Router::auth($options);
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::resetPassword()
+         * @static 
+         */ 
+        public static function resetPassword()
+        {
+                        return \Illuminate\Routing\Router::resetPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::confirmPassword()
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        return \Illuminate\Routing\Router::confirmPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::emailVerification()
+         * @static 
+         */ 
+        public static function emailVerification()
+        {
+                        return \Illuminate\Routing\Router::emailVerification();
+        }
          
     }
             /**
@@ -12492,6 +12575,18 @@
         {
                         /** @var \Illuminate\Session\Store $instance */
                         return $instance->exists($key);
+        }
+                    /**
+         * Determine if the given key is missing from the session data.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($key)
+        {
+                        /** @var \Illuminate\Session\Store $instance */
+                        return $instance->missing($key);
         }
                     /**
          * Checks if a key is present and not null.
@@ -15713,6 +15808,26 @@
                     /**
          * 
          *
+         * @static 
+         */ 
+        public static function reportErrorLevels($reportErrorLevels)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->reportErrorLevels($reportErrorLevels);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function filterExceptionsUsing($filterExceptionsCallable)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->filterExceptionsUsing($filterExceptionsCallable);
+        }
+                    /**
+         * 
+         *
          * @return null|string 
          * @static 
          */ 
@@ -15870,6 +15985,16 @@
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->anonymizeIp();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function censorRequestBodyFields($fieldNames)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->censorRequestBodyFields($fieldNames);
         }
                     /**
          * 
@@ -17115,6 +17240,59 @@
      
 }
 
+    namespace Illuminate\Routing { 
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Routing\RouteRegistrar
+     */ 
+        class Router {
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::auth()
+         * @param mixed $options
+         * @static 
+         */ 
+        public static function auth($options = [])
+        {
+                        return \Illuminate\Routing\Router::auth($options);
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::resetPassword()
+         * @static 
+         */ 
+        public static function resetPassword()
+        {
+                        return \Illuminate\Routing\Router::resetPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::confirmPassword()
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        return \Illuminate\Routing\Router::confirmPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::emailVerification()
+         * @static 
+         */ 
+        public static function emailVerification()
+        {
+                        return \Illuminate\Routing\Router::emailVerification();
+        }
+         
+    }
+     
+}
+
 
 namespace  { 
             class App extends \Illuminate\Support\Facades\App {}
@@ -17668,6 +17846,19 @@ namespace  {
             }
              
                 /**
+             * Set the relationships that should be eager loaded while removing any previously added eager loading specifications.
+             *
+             * @param mixed $relations
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function withOnly($relations)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->withOnly($relations);
+            }
+             
+                /**
              * Create a new instance of the model being queried.
              *
              * @param array $attributes
@@ -17828,6 +18019,18 @@ namespace  {
             public static function hasGlobalMacro($name)
             {
                                 return \Illuminate\Database\Eloquent\Builder::hasGlobalMacro($name);
+            }
+             
+                /**
+             * Clone the Eloquent query builder.
+             *
+             * @return static 
+             * @static 
+             */ 
+            public static function clone()
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->clone();
             }
              
                 /**
@@ -18377,7 +18580,7 @@ namespace  {
                 /**
              * Add a subselect expression to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|string $query
              * @param string $as
              * @return \Illuminate\Database\Query\Builder 
              * @throws \InvalidArgumentException
@@ -20171,18 +20374,6 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
                                 return $instance->useWritePdo();
-            }
-             
-                /**
-             * Clone the query.
-             *
-             * @return static 
-             * @static 
-             */ 
-            public static function clone()
-            {
-                                /** @var \Illuminate\Database\Query\Builder $instance */
-                                return $instance->clone();
             }
              
                 /**

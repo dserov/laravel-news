@@ -41,10 +41,6 @@ class Menu extends Model
                 'title' => __('labels.export_request'),
                 'alias' => 'exportRequest::create',
             ],
-            [
-                'title' => __('labels.go_admin_panel'),
-                'alias' => 'admin::news::index',
-            ],
         ];
 
         $this->adminMenu = [
