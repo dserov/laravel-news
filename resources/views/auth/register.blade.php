@@ -49,4 +49,18 @@
         </form>
         <a href="/login">Log in</a>
     </div>
+
+    <div class="mb-3">
+        <h2 class="text-2xl text-center font-bold by-3 mb-10 mt-10 ">Вход через соцсети</h2>
+        <div class="max-w-3xl mx-auto flex justify-center">
+            <a href="{{ route('social::login-vk') }}"
+               class="mr-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                VKontakte
+            </a>
+            <a href="{{ route('social::login-facebook') }}"
+               class="mr-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Facebook
+            </a>
+        </div>
+    </div>
 @endsection

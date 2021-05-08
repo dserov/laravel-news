@@ -5,25 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\Menu
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Menu newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu query()
- * @mixin \Eloquent
- */
-class Menu extends Model
+class Menu
 {
-    use HasFactory;
-
     private $menu = [];
 
     private $adminMenu = [];
 
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
         $this->menu = [
             [
                 'title' => __('labels.news_as_many'),

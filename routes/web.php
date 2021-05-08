@@ -1,18 +1,22 @@
 <?php
 
+use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ExportRequestController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use \App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +29,7 @@ use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 */
 
 Route::redirect('/', '/news');
-Route::redirect('/admin', '/admin/news');
+//Route::redirect('/admin', '/admin/news');
 
 Route::get('/about', function () {
     return view('about');
@@ -54,49 +58,84 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => '/admin/news',
-    'as' => 'admin::news::',
+    'prefix' => 'social',
+    'as' => 'social::'
+], function (){
+    Route::get('login-vk', [SocialController::class, 'loginVk'])->name('login-vk');
+    Route::get('response-vk', [SocialController::class, 'responseVk'])->name('response-vk');
+    Route::get('login-facebook', [SocialController::class, 'loginFacebook'])->name('login-facebook');
+    Route::get('response-facebook', [SocialController::class, 'responseFacebook'])->name('response-facebook');
+});
+
+Route::group([
+    'prefix' => '/admin',
+    'as' => 'admin::',
     'middleware' => 'auth.admin',
 ], function () {
-    Route::get('/', [AdminNewsController::class, 'index'])
-        ->name('index');
-    Route::get('/create', [AdminNewsController::class, 'create'])
-        ->name('create');
-    Route::post('/save', [AdminNewsController::class, 'save'])
-        ->name('save');
-    Route::get('/update/{news}', [AdminNewsController::class, 'update'])
-        ->name('update');
-    Route::get('/delete/{news}', [AdminNewsController::class, 'delete'])
-        ->name('delete');
+    Route::get('/exportRequest', [ExportRequestController::class, 'index'])
+        ->name('exportRequest::index');
+
+
+    Route::group([
+        'prefix' => 'parser',
+        'as' => 'parser::',
+    ], function () {
+        Route::get('rss/{url}', [ParserController::class, 'rss'])
+            ->name('rss');
+    });
+
+    Route::group([
+        'prefix' => '/news',
+        'as' => 'news::',
+    ], function () {
+        Route::get('/', [AdminNewsController::class, 'index'])
+            ->name('index');
+        Route::get('/create', [AdminNewsController::class, 'create'])
+            ->name('create');
+        Route::post('/save', [AdminNewsController::class, 'save'])
+            ->name('save');
+        Route::get('/update/{news}', [AdminNewsController::class, 'update'])
+            ->name('update');
+        Route::get('/delete/{news}', [AdminNewsController::class, 'delete'])
+            ->name('delete');
+    });
+
+    Route::group([
+        'prefix' => '/categories',
+        'as' => 'category::',
+    ], function () {
+        Route::get('/', [AdminCategoryController::class, 'index'])
+            ->name('index');
+        Route::get('/create', [AdminCategoryController::class, 'create'])
+            ->name('create');
+        Route::post('/save', [AdminCategoryController::class, 'save'])
+            ->name('save');
+        Route::get('/update/{category}', [AdminCategoryController::class, 'update'])
+            ->name('update');
+        Route::get('/delete/{category}', [AdminCategoryController::class, 'delete'])
+            ->name('delete');
+    });
 });
 
 Route::group([
     'prefix' => '/admin/profile',
     'as' => 'admin::profile::',
-    'middleware' => 'auth',
+    'middleware' => ['auth', 'auth.admin'],
 ], function () {
-    Route::get('/', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('index');
-    Route::get('/create', [App\Http\Controllers\Admin\ProfileController::class, 'create'])->name('create');
-    Route::get('/update/{user}', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('update');
-    Route::get('/delete/{user}', [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('delete');
-    Route::post('/save', [App\Http\Controllers\Admin\ProfileController::class, 'save'])->name('save');
+    Route::get('/', [AdminProfileController::class, 'index'])->name('index');
+    Route::get('/create', [AdminProfileController::class, 'create'])->name('create');
+    Route::get('/update/{user}', [AdminProfileController::class, 'update'])->name('update');
+    Route::get('/delete/{user}', [AdminProfileController::class, 'destroy'])->name('delete');
+    Route::post('/save', [AdminProfileController::class, 'save'])->name('save');
 });
 
 Route::group([
-    'prefix' => '/admin/categories',
-    'as' => 'admin::category::',
-    'middleware' => 'auth.admin',
+    'prefix' => '/profile',
+    'as' => 'profile::',
+    'middleware' => 'auth',
 ], function () {
-    Route::get('/', [AdminCategoryController::class, 'index'])
-        ->name('index');
-    Route::get('/create', [AdminCategoryController::class, 'create'])
-        ->name('create');
-    Route::post('/save', [AdminCategoryController::class, 'save'])
-        ->name('save');
-    Route::get('/update/{category}', [AdminCategoryController::class, 'update'])
-        ->name('update');
-    Route::get('/delete/{category}', [AdminCategoryController::class, 'delete'])
-        ->name('delete');
+    Route::get('/update', [ProfileController::class, 'update'])->name('update');
+    Route::post('/save', [ProfileController::class, 'save'])->name('save');
 });
 
 Route::group([
@@ -108,9 +147,6 @@ Route::group([
     Route::post('/save', [FeedbackController::class, 'save'])
         ->name('save');
 });
-
-Route::get('/admin/exportRequest', [ExportRequestController::class, 'index'])
-    ->name('admin::exportRequest::index');
 
 Route::group([
     'prefix' => '/exportRequest',

@@ -23,7 +23,7 @@
         @forelse($categories as $item)
             <div class="flex my-6 shadow hover:shadow-lg p-4 bg-white">
                 <div class="mr-3 flex-shrink-0">
-                    <img src="https://via.placeholder.com/150" alt="{{$item['name']}}">
+                    <img src="https://via.placeholder.com/80" alt="{{$item['name']}}">
                 </div>
                 <div class="flex flex-col">
                     <h2 class="font-bold">{{$item['name']}}</h2>

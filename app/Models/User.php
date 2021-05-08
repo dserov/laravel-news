@@ -35,6 +35,12 @@ use Illuminate\Notifications\Notifiable;
  * @mixin \Eloquent
  * @property int $is_admin
  * @method static \Illuminate\Database\Eloquent\Builder|User whereIsAdmin($value)
+ * @property string $social_id
+ * @property string $type_auth
+ * @property string $avatar
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAvatar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereSocialId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTypeAuth($value)
  */
 class User extends Authenticatable
 {
@@ -50,6 +56,9 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'social_id',
+        'type_auth',
+        'avatar',
     ];
 
     /**
