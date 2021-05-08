@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `laravel_news`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `laravel_news` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-
-USE `laravel_news`;
-
---
 -- Table structure for table `categories`
 --
 
@@ -248,7 +240,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_social_id_index` (`social_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +249,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'Дмитрий Серов','klt-test@list.ru',NULL,'$2y$10$lh5B7ydjWmBPB7WZ0hK4neFt4VSz3DUBMUEo7Yj//HpT/p8DFun2i',NULL,'2021-05-07 20:15:29','2021-05-08 06:40:59',1,'1861907730649364','fb','https://graph.facebook.com/v3.3/1861907730649364/picture?type=normal');
+INSERT INTO `users` VALUES (11,'dserov@gmail.com','dserov@gmail.com',NULL,'$2y$10$qXo3xXwqNb4cXhpEcOMpCe1OXDQJnrUYDHeWFmmR21a2zuMiqOk6.',NULL,'2021-05-08 10:04:02','2021-05-08 10:04:02',1,'','site','');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -270,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-08 12:43:33
+-- Dump completed on 2021-05-08 13:04:58
