@@ -32,11 +32,12 @@ class AuthenticateAdmin extends Middleware
      */
     public function handle($request, Closure $next, ...$guards)
     {
+        $this->authenticate($request, $guards);
+
         if(\Auth::user()->is_admin === 0) {
             $this->unauthenticated($request, $guards);
         };
 
         return $next($request);
     }
-
 }
