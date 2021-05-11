@@ -8,7 +8,7 @@
     @endif
     <div class="max-w-3xl mx-auto">
         <h1 class="text-2xl text-center font-bold by-3 mb-10">@if(request()->is('*/create')) {!! __('labels.add_news_title') !!} @else {!! __('labels.add_news_title') !!} @endif</h1>
-        {!! Form::open(['route' => 'admin::news::save']) !!}
+        {!! Form::open(['route' => 'admin::news::save', 'files' => true]) !!}
             {!! Form::input('hidden', 'news[id]') !!}
             <div class="col-span-6 mb-8">
                 {!! Form::label('title', __('labels.news_title'), ['class' => 'block text-sm font-medium text-gray-700']) !!}
@@ -57,6 +57,15 @@
                 {!! Form::radio('news[is_private]', 0, 'news[is_private]', ['id' => 'is_private_no', 'class' => 'mb-3 ml-3 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md']) !!}
                 {!! Form::label('is_private_no', __('labels.no'), ['class' => 'ml-1 block text-sm font-medium text-gray-700']) !!}
                 @error('news.is_private')
+                    <div class="bg-red-100 text-red-900 border border-red-900 rounded-md text-sm p-2">{{$message}}</div>
+                @enderror
+            </div>
+
+            <div class="col-span-6 mb-8">
+                <label class="custom-file-label" for="chooseFile">{{ __('labels.enclosure') }}</label>
+                <input type="file" name="news[enclosure]" class="custom-file-input" id="chooseFile">
+                <span>{{ old('news.enclosure') }}</span>
+                @error('news.enclosure')
                     <div class="bg-red-100 text-red-900 border border-red-900 rounded-md text-sm p-2">{{$message}}</div>
                 @enderror
             </div>

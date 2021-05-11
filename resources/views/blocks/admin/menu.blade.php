@@ -7,11 +7,8 @@
             </svg>
         </button>
         <div class="dropdown-menu absolute hidden text-gray-700 pt-1 flex">
-            <a href="{{ route('admin::parser::rss', ['url' => base64_encode('https://3dnews.ru/news/rss/')]) }}"
-               class="text-purple-800 bg-gray-300 hover:text-gray-100 hover:bg-purple-800 px-4 py-2 inline-block w-full">3dnews.ru
-            </a>
-            <a href="{{ route('admin::parser::rss', ['url' => base64_encode('https://lenta.ru/rss/news/')]) }}"
-               class="text-purple-800 bg-gray-300 hover:text-gray-100 hover:bg-purple-800 px-4 py-2 inline-block w-full">lenta.ru
+            <a href="{{ route('admin::parser') }}"
+               class="text-purple-800 bg-gray-300 hover:text-gray-100 hover:bg-purple-800 px-4 py-2 inline-block w-full">Запланировать парсинг
             </a>
         </div>
     </div>

@@ -44,4 +44,5 @@ return [
     'login' => 'Вход',
     'register' => 'Регистрация',
     'parser' => 'Парсер',
+    'enclosure' => 'Картинка',
 ];

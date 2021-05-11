@@ -17,6 +17,7 @@ use \App\Http\Controllers\NewsController;
 use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use \App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,7 +61,7 @@ Route::group([
 Route::group([
     'prefix' => 'social',
     'as' => 'social::'
-], function (){
+], function () {
     Route::get('login-vk', [SocialController::class, 'loginVk'])->name('login-vk');
     Route::get('response-vk', [SocialController::class, 'responseVk'])->name('response-vk');
     Route::get('login-facebook', [SocialController::class, 'loginFacebook'])->name('login-facebook');
@@ -75,14 +76,7 @@ Route::group([
     Route::get('/exportRequest', [ExportRequestController::class, 'index'])
         ->name('exportRequest::index');
 
-
-    Route::group([
-        'prefix' => 'parser',
-        'as' => 'parser::',
-    ], function () {
-        Route::get('rss/{url}', [ParserController::class, 'rss'])
-            ->name('rss');
-    });
+    Route::get('/parser', [ParserController::class, 'index'])->name('parser');
 
     Route::group([
         'prefix' => '/news',
@@ -141,7 +135,7 @@ Route::group([
 Route::group([
     'prefix' => '/feedback',
     'as' => 'feedback::'
-], function (){
+], function () {
     Route::get('/', [FeedbackController::class, 'index'])
         ->name('index');
     Route::post('/save', [FeedbackController::class, 'save'])
@@ -151,7 +145,7 @@ Route::group([
 Route::group([
     'prefix' => '/exportRequest',
     'as' => 'exportRequest::'
-], function (){
+], function () {
     Route::get('/create', [ExportRequestController::class, 'create'])
         ->name('create');
     Route::post('/save', [ExportRequestController::class, 'save'])
@@ -166,6 +160,11 @@ Route::get('/lang/{locale}', function ($locale) {
     return redirect()->back();
 });
 
+//Route::get('/uploads/{path}', function (Request $request, $path){
+//    if (Storage::disk('public')->exists($path)) {
+//        return $request->download(Storage::disk('public')->files($path));
+//    }
+//})->where('path', '.*');
 
 //
 // Login Routes...

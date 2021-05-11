@@ -45,7 +45,8 @@
     <div class="flex justify-center rounded-lg text-lg" role="group">
         @foreach( \Config::get('app.locales') as $locale)
             <a href="/lang/{{ $locale }}" class="
-            @if($loop->first) bg-white text-blue-500 hover:bg-blue-500 hover:text-white border border-r-0 border-blue-500 rounded-l-lg px-3 py-1 mx-0 outline-none focus:shadow-outline
+            @if($loop->first)
+                    bg-white text-blue-500 hover:bg-blue-500 hover:text-white border border-r-0 border-blue-500 rounded-l-lg px-3 py-1 mx-0 outline-none focus:shadow-outline
             @elseif($loop->last)
                     bg-white text-blue-500 hover:bg-blue-500 hover:text-white border border-l-0 border-blue-500 rounded-r-lg px-3 py-1 mx-0 outline-none focus:shadow-outline
             @else

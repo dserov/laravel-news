@@ -30,6 +30,7 @@ class SaveNewsRequest extends FormRequest
             'news.spoiler' => 'required|min:10',
             'news.category_id' => 'required|exists:categories,id',
             'news.is_private' => '',
+            'news.enclosure' => 'sometimes|required|file|max:2048000|mimes:jpg,bmp,png,gif',
         ];
     }
 
@@ -40,6 +41,7 @@ class SaveNewsRequest extends FormRequest
             'news.spoiler' => __('labels.news_spoiler'),
             'news.category_id' => __('labels.news_category_name'),
             'news.source' => __('labels.news_source'),
+            'news.enclosure' => __('labels.enclosure'),
         ];
     }
 }

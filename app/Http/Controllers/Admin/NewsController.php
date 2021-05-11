@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveNewsRequest;
 use App\Models\Category;
 use App\Models\News;
+use http\Url;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -29,10 +30,21 @@ class NewsController extends Controller
 
     public function save(SaveNewsRequest $request)
     {
+        $news = $request->input('news');
+        unset($news['enclosure']);
+
+        // save enclosure
+        if($uploadedFile = $request->file('news.enclosure')) {
+            $fileName = $uploadedFile->store('', 'public');
+            $news['enclosure'] = \Storage::url($fileName);
+        }
+
         // insert or update news
-        $newsModel = News::query()->firstOrNew(['id' => $request->input('news.id')]);
-        $newsModel->fill($request->input('news'));
-        if (!$newsModel->save()) {
+        $newsModel = News::updateOrCreate(['id' => $news['id']], $news);
+        if (is_null($newsModel)) {
+            // remove file
+            \Storage::disk('public')->delete($fileName);
+
             return redirect()
                 ->route('admin::news::create')
                 ->withErrors(['Не удалось сохранить!'])
