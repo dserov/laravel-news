@@ -44,7 +44,7 @@ class MySqlDump extends Command
         if (!is_dir($path)) {
             mkdir($path, 0755, true);
         }
-        dd($command);
+
         exec($command);
     }
 }
