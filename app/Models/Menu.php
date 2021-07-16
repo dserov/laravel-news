@@ -5,59 +5,53 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\Menu
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Menu newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu query()
- * @mixin \Eloquent
- */
-class Menu extends Model
+class Menu
 {
-    use HasFactory;
+    private $menu = [];
 
-    private $menu = [
-        [
-            'title' => 'Новости',
-            'alias' => 'news::index',
-        ],
-        [
-            'title' => 'Категории',
-            'alias' => 'category::list',
-        ],
-        [
-            'title' => 'Обратная связь',
-            'alias' => 'feedback::index',
-        ],
-        [
-            'title' => 'Запрос выгрузки',
-            'alias' => 'exportRequest::create',
-        ],
-        [
-            'title' => 'Adminka',
-            'alias' => 'admin::news::index',
-        ],
-    ];
+    private $adminMenu = [];
 
-    private $adminMenu = [
-        [
-            'title' => 'DB Info',
-            'alias' => 'db::index',
-        ],
-        [
-            'title' => 'Новости',
-            'alias' => 'admin::news::index',
-        ],
-        [
-            'title' => 'Запросы на выгрузку',
-            'alias' => 'admin::exportRequest::index',
-        ],
-        [
-            'title' => 'На сайт',
-            'alias' => 'news::index',
-        ],
-    ];
+    public function __construct(array $attributes = [])
+    {
+        $this->menu = [
+            [
+                'title' => __('labels.news_as_many'),
+                'alias' => 'news::index',
+            ],
+            [
+                'title' => __('labels.categories'),
+                'alias' => 'category::list',
+            ],
+            [
+                'title' => __('labels.feedback'),
+                'alias' => 'feedback::index',
+            ],
+            [
+                'title' => __('labels.export_request'),
+                'alias' => 'exportRequest::create',
+            ],
+        ];
+
+        $this->adminMenu = [
+            [
+                'title' => __('labels.news_as_many'),
+                'alias' => 'admin::news::index',
+            ],
+            [
+                'title' => __('labels.categories'),
+                'alias' => 'admin::category::index',
+            ],
+            [
+                'title' => __('labels.export_requests'),
+                'alias' => 'admin::exportRequest::index',
+            ],
+            [
+                'title' => __('labels.go_site'),
+                'alias' => 'news::index',
+            ],
+        ];
+    }
+
 
     /**
      * @return array

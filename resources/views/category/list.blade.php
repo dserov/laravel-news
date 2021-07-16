@@ -16,4 +16,5 @@
     @empty
         Категорий нет
     @endforelse
+    {{$categories->links()}}
 @endsection

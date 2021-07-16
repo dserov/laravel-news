@@ -34,7 +34,19 @@ class Category extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function news() {
         return $this->hasMany(News::class);
+    }
+
+    public static function getList()
+    {
+        return self::query()
+            ->select('id', 'name')
+            ->get()
+            ->pluck('name', 'id');
     }
 }

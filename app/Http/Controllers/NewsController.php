@@ -9,7 +9,13 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return view('news.index', ['news' => News::query()->with(['category'])->get()]);
+        $news = News::query()
+            ->with(['category']);
+        if (! \Auth::id()) {
+            $news->where('is_private', false);
+        }
+
+        return view('news.index', ['news' => $news->paginate(10)]);
     }
 
     public function listByCategory(Category $category)

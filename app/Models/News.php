@@ -39,6 +39,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|News withTrashed()
  * @method static \Illuminate\Database\Query\Builder|News withoutTrashed()
  * @mixin \Eloquent
+ * @property string $enclosure
+ * @property string|null $guid
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereEnclosure($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereGuid($value)
  */
 class News extends Model
 {
@@ -52,6 +56,8 @@ class News extends Model
         'category_id',
         'is_private',
         'spoiler',
+        'enclosure',
+        'guid',
     ];
 
     public function category() {

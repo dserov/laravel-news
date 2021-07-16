@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'news_as_many' => 'News',
+    'news_title' => 'Title',
+    'news_source' => 'Source',
+    'news_category_name' => 'Category',
+    'news_spoiler' => 'Spoiler',
+    'news_content' => 'Content',
+    'news_is_private_title' => 'Private',
+    'news_not_found' => 'News not found!',
+    'news_list' => 'List of News',
+    'news_add_new' => 'Add news',
+    'yes' => 'Yes',
+    'no' => 'No',
+    'save_btn_title' => 'Save',
+    'edit_btn_title' => 'Edit',
+    'delete_btn_title' => 'Delete',
+    'edit_news_title' => 'Edit news',
+    'add_news_title' => 'Add news',
+    'export_requests' => 'Export requests',
+    'export_request' => 'Export request',
+    'go_site' => 'Go site',
+    'go_admin_panel' => 'Go Admin-panel',
+    'categories' => 'Categories',
+    'category' => 'Category',
+    'feedback' => 'Feedback',
+    'category_name' => 'Category name',
+    'add_category_title' => 'Add category',
+    'edit_category_title' => 'Edit category',
+    'news_in_category' => 'News in category',
+
+];
